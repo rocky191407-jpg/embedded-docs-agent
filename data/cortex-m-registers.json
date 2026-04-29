@@ -1,0 +1,360 @@
+{
+  "SYST_CSR": {
+    "address": "0xE000E010",
+    "block": "SysTick",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "SysTick Control and Status Register",
+    "fields": {
+      "ENABLE [0]": "Counter enable",
+      "TICKINT [1]": "Generate exception when counter reaches 0",
+      "CLKSOURCE [2]": "0 = external reference clock; 1 = processor clock",
+      "COUNTFLAG [16]": "Set to 1 when counter wraps (read clears)"
+    }
+  },
+  "SYST_RVR": {
+    "address": "0xE000E014",
+    "block": "SysTick",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "SysTick Reload Value Register (24-bit)",
+    "fields": {
+      "RELOAD [23:0]": "Value loaded into SYST_CVR when counter reaches 0"
+    }
+  },
+  "SYST_CVR": {
+    "address": "0xE000E018",
+    "block": "SysTick",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "SysTick Current Value Register",
+    "fields": {
+      "CURRENT [23:0]": "Current counter value; any write clears to 0"
+    }
+  },
+  "SYST_CALIB": {
+    "address": "0xE000E01C",
+    "block": "SysTick",
+    "reset": "Implementation defined",
+    "access": "RO",
+    "description": "SysTick Calibration Value Register",
+    "fields": {
+      "TENMS [23:0]": "Reload value for 10 ms timing",
+      "SKEW [30]": "1 = TENMS is inexact",
+      "NOREF [31]": "1 = no separate reference clock available"
+    }
+  },
+  "NVIC_ISER0": {
+    "address": "0xE000E100",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Set-Enable Register 0 (IRQs 0-31)",
+    "fields": {
+      "SETENA [31:0]": "Write 1 to enable IRQ; write 0 has no effect; read returns enable state"
+    }
+  },
+  "NVIC_ICER0": {
+    "address": "0xE000E180",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Clear-Enable Register 0 (IRQs 0-31)",
+    "fields": {
+      "CLRENA [31:0]": "Write 1 to disable IRQ; write 0 has no effect"
+    }
+  },
+  "NVIC_ISPR0": {
+    "address": "0xE000E200",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Set-Pending Register 0 (IRQs 0-31)",
+    "fields": {
+      "SETPEND [31:0]": "Write 1 to set pending; write 0 has no effect"
+    }
+  },
+  "NVIC_ICPR0": {
+    "address": "0xE000E280",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Clear-Pending Register 0 (IRQs 0-31)",
+    "fields": {
+      "CLRPEND [31:0]": "Write 1 to clear pending; write 0 has no effect"
+    }
+  },
+  "NVIC_IABR0": {
+    "address": "0xE000E300",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RO",
+    "description": "Interrupt Active Bit Register 0 (IRQs 0-31)",
+    "fields": {
+      "ACTIVE [31:0]": "Read-only; 1 = IRQ currently active or pre-empted"
+    }
+  },
+  "NVIC_IPR0": {
+    "address": "0xE000E400",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Priority Register 0 (4 IRQs per word, 8 bits each)",
+    "fields": {
+      "IP_N [31:0]": "Priority for IRQ0..IRQ3; only top N bits implemented (typically 4)"
+    }
+  },
+  "SCB_CPUID": {
+    "address": "0xE000ED00",
+    "block": "SCB",
+    "reset": "Implementation defined",
+    "access": "RO",
+    "description": "CPUID Base Register — identifies the processor",
+    "fields": {
+      "REVISION [3:0]": "Implementation revision",
+      "PARTNO [15:4]": "Part number (e.g. 0xC24 for Cortex-M4)",
+      "ARCHITECTURE [19:16]": "0xF for ARMv7-M",
+      "VARIANT [23:20]": "Major revision",
+      "IMPLEMENTER [31:24]": "0x41 = ARM"
+    }
+  },
+  "SCB_ICSR": {
+    "address": "0xE000ED04",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Interrupt Control and State Register",
+    "fields": {
+      "VECTACTIVE [8:0]": "Active exception number",
+      "RETTOBASE [11]": "1 = next exit returns to base level",
+      "VECTPENDING [20:12]": "Highest priority pending exception",
+      "ISRPENDING [22]": "1 = an external IRQ is pending",
+      "PENDSTCLR [25]": "Write 1 to clear SysTick pending",
+      "PENDSTSET [26]": "Write 1 to set SysTick pending",
+      "PENDSVCLR [27]": "Write 1 to clear PendSV pending",
+      "PENDSVSET [28]": "Write 1 to set PendSV pending",
+      "NMIPENDSET [31]": "Write 1 to set NMI pending"
+    }
+  },
+  "SCB_VTOR": {
+    "address": "0xE000ED08",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Vector Table Offset Register",
+    "fields": {
+      "TBLOFF [31:7]": "Vector table base address (must be 128-byte aligned on M3/M4)"
+    }
+  },
+  "SCB_AIRCR": {
+    "address": "0xE000ED0C",
+    "block": "SCB",
+    "reset": "0xFA050000",
+    "access": "RW",
+    "description": "Application Interrupt and Reset Control Register",
+    "fields": {
+      "VECTRESET [0]": "Self-reset (deprecated)",
+      "VECTCLRACTIVE [1]": "Clear all active state info",
+      "SYSRESETREQ [2]": "Write 1 to request a system reset",
+      "PRIGROUP [10:8]": "Priority grouping (sub-priority vs pre-empt)",
+      "ENDIANNESS [15]": "0 = little, 1 = big",
+      "VECTKEY [31:16]": "Must write 0x05FA to perform a write"
+    }
+  },
+  "SCB_SCR": {
+    "address": "0xE000ED10",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "System Control Register",
+    "fields": {
+      "SLEEPONEXIT [1]": "1 = enter sleep on return from ISR if no pending IRQ",
+      "SLEEPDEEP [2]": "1 = use deep sleep WFI/WFE",
+      "SEVONPEND [4]": "1 = enabled IRQs and pending IRQs trigger WFE wake"
+    }
+  },
+  "SCB_CCR": {
+    "address": "0xE000ED14",
+    "block": "SCB",
+    "reset": "0x00000200",
+    "access": "RW",
+    "description": "Configuration and Control Register",
+    "fields": {
+      "NONBASETHRDENA [0]": "1 = thread mode can be entered with active exceptions",
+      "USERSETMPEND [1]": "Allow unprivileged write to STIR",
+      "UNALIGN_TRP [3]": "1 = unaligned access traps",
+      "DIV_0_TRP [4]": "1 = divide by zero traps",
+      "BFHFNMIGN [8]": "Ignore bus fault when priority -1/-2",
+      "STKALIGN [9]": "1 = exception entry forces 8-byte stack alignment"
+    }
+  },
+  "SCB_SHPR1": {
+    "address": "0xE000ED18",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "System Handler Priority Register 1 (MemManage, BusFault, UsageFault)",
+    "fields": {
+      "PRI_4 [7:0]": "MemManage priority",
+      "PRI_5 [15:8]": "BusFault priority",
+      "PRI_6 [23:16]": "UsageFault priority"
+    }
+  },
+  "SCB_SHPR2": {
+    "address": "0xE000ED1C",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "System Handler Priority Register 2 (SVCall)",
+    "fields": {
+      "PRI_11 [31:24]": "SVCall priority"
+    }
+  },
+  "SCB_SHPR3": {
+    "address": "0xE000ED20",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "System Handler Priority Register 3 (PendSV, SysTick)",
+    "fields": {
+      "PRI_14 [23:16]": "PendSV priority",
+      "PRI_15 [31:24]": "SysTick priority"
+    }
+  },
+  "SCB_SHCSR": {
+    "address": "0xE000ED24",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "System Handler Control and State Register",
+    "fields": {
+      "MEMFAULTACT [0]": "MemManage active",
+      "BUSFAULTACT [1]": "BusFault active",
+      "USGFAULTACT [3]": "UsageFault active",
+      "SVCALLACT [7]": "SVCall active",
+      "MONITORACT [8]": "DebugMonitor active",
+      "PENDSVACT [10]": "PendSV active",
+      "SYSTICKACT [11]": "SysTick active",
+      "USGFAULTPENDED [12]": "UsageFault pending",
+      "MEMFAULTPENDED [13]": "MemManage pending",
+      "BUSFAULTPENDED [14]": "BusFault pending",
+      "SVCALLPENDED [15]": "SVCall pending",
+      "MEMFAULTENA [16]": "Enable MemManage",
+      "BUSFAULTENA [17]": "Enable BusFault",
+      "USGFAULTENA [18]": "Enable UsageFault"
+    }
+  },
+  "SCB_CFSR": {
+    "address": "0xE000ED28",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "Configurable Fault Status Register (MMSR | BFSR | UFSR)",
+    "fields": {
+      "MMSR [7:0]": "MemManage Fault Status",
+      "BFSR [15:8]": "BusFault Status",
+      "UFSR [31:16]": "UsageFault Status"
+    }
+  },
+  "SCB_HFSR": {
+    "address": "0xE000ED2C",
+    "block": "SCB",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "HardFault Status Register",
+    "fields": {
+      "VECTTBL [1]": "Fault occurred during vector fetch",
+      "FORCED [30]": "Configurable fault escalated to HardFault",
+      "DEBUGEVT [31]": "Debug-related fault"
+    }
+  },
+  "SCB_MMFAR": {
+    "address": "0xE000ED34",
+    "block": "SCB",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "MemManage Fault Address Register",
+    "fields": {
+      "ADDRESS [31:0]": "Address that caused the MemManage fault (valid if MMARVALID set)"
+    }
+  },
+  "SCB_BFAR": {
+    "address": "0xE000ED38",
+    "block": "SCB",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "BusFault Address Register",
+    "fields": {
+      "ADDRESS [31:0]": "Address that caused the bus fault (valid if BFARVALID set)"
+    }
+  },
+  "MPU_TYPE": {
+    "address": "0xE000ED90",
+    "block": "MPU",
+    "reset": "Implementation defined",
+    "access": "RO",
+    "description": "MPU Type Register",
+    "fields": {
+      "SEPARATE [0]": "0 = unified MPU",
+      "DREGION [15:8]": "Number of supported MPU regions (e.g. 8)",
+      "IREGION [23:16]": "Always 0 on ARMv7-M (unified)"
+    }
+  },
+  "MPU_CTRL": {
+    "address": "0xE000ED94",
+    "block": "MPU",
+    "reset": "0x00000000",
+    "access": "RW",
+    "description": "MPU Control Register",
+    "fields": {
+      "ENABLE [0]": "1 = MPU enabled",
+      "HFNMIENA [1]": "1 = MPU active during HardFault/NMI",
+      "PRIVDEFENA [2]": "1 = privileged code uses default memory map for unmapped regions"
+    }
+  },
+  "MPU_RNR": {
+    "address": "0xE000ED98",
+    "block": "MPU",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "MPU Region Number Register",
+    "fields": {
+      "REGION [7:0]": "Selects MPU region for RBAR/RASR access"
+    }
+  },
+  "MPU_RBAR": {
+    "address": "0xE000ED9C",
+    "block": "MPU",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "MPU Region Base Address Register",
+    "fields": {
+      "REGION [3:0]": "Region number (alternative to RNR if VALID=1)",
+      "VALID [4]": "1 = use REGION field, ignore RNR",
+      "ADDR [31:5]": "Base address (alignment depends on region size)"
+    }
+  },
+  "MPU_RASR": {
+    "address": "0xE000EDA0",
+    "block": "MPU",
+    "reset": "Unknown",
+    "access": "RW",
+    "description": "MPU Region Attribute and Size Register",
+    "fields": {
+      "ENABLE [0]": "1 = region enabled",
+      "SIZE [5:1]": "Region size = 2^(SIZE+1) bytes",
+      "SRD [15:8]": "Subregion disable bits",
+      "ATTRS [31:16]": "TEX/S/C/B/AP/XN cache & access attributes"
+    }
+  },
+  "STIR": {
+    "address": "0xE000EF00",
+    "block": "NVIC",
+    "reset": "0x00000000",
+    "access": "WO",
+    "description": "Software Trigger Interrupt Register",
+    "fields": {
+      "INTID [8:0]": "Write IRQ number to trigger"
+    }
+  }
+}

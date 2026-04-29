@@ -41,40 +41,9 @@ from rich.rule import Rule
 
 from src.llm import EmbeddedDocsLLM
 from src.retriever import retrieve
+from src.tools import TOOL_HANDLERS
 
 MAX_TOOL_LOOPS = 8
-
-
-# ── Tool handlers (Day 4 will implement for real) ───────────────────────────
-
-def _tool_search_docs(query: str, k: int = 5) -> str:
-    """Run an additional retrieval. Returns formatted chunks."""
-    chunks = retrieve(query, k=k)
-    if not chunks:
-        return "(no chunks found)"
-    parts = []
-    for i, c in enumerate(chunks, 1):
-        parts.append(
-            f"[chunk {i}] source={c['source']} chunk_index={c['chunk_index']} score={c['score']:.3f}\n{c['text']}"
-        )
-    return "\n\n---\n\n".join(parts)
-
-
-def _tool_lookup_register(name: str) -> str:
-    """Stub. Day 4: hook to a real ARM Cortex-M register database."""
-    return f"(lookup_register stub — register '{name}' lookup not yet implemented; returning generic ARM Cortex-M reference: see SCB / NVIC / SysTick blocks in ARMv7-M Architecture Reference Manual)"
-
-
-def _tool_format_assembly(code: str, arch: str = "arm-cortex-m") -> str:
-    """Stub. Day 4: shell out to arm-none-eabi-as / m68k-elf-as if available."""
-    return f"(format_assembly stub — would assemble {len(code)} chars for {arch}; assembler not yet wired up)"
-
-
-TOOL_HANDLERS = {
-    "search_docs": lambda inp: _tool_search_docs(**inp),
-    "lookup_register": lambda inp: _tool_lookup_register(**inp),
-    "format_assembly": lambda inp: _tool_format_assembly(**inp),
-}
 
 
 # ── Agent loop ───────────────────────────────────────────────────────────────
