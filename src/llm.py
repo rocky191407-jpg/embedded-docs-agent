@@ -33,7 +33,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
+MODEL = os.getenv("CLAUDE_MODEL", "claude-opus-4-7")
 MAX_TOKENS = 8192
 
 
@@ -51,7 +51,11 @@ Behavior rules:
 - Use lookup_register for ARM Cortex-M peripheral registers — names like NVIC_ISER,
   SYST_RVR, SCB_VTOR — instead of relying on memory.
 
-Style: terse, source-cited, code-heavy. No marketing fluff, no hedging filler."""
+Style: terse, source-cited, code-heavy. No marketing fluff, no hedging filler.
+
+Language: respond in the same language the user asked in. If the question is in
+Chinese, answer in Chinese while keeping technical terms / register names /
+register addresses in English (e.g. "SCB_VTOR 的地址是 0xE000ED08")."""
 
 
 # ── Tools ────────────────────────────────────────────────────────────────────
@@ -200,7 +204,10 @@ class EmbeddedDocsLLM:
             ],
             tools=TOOLS,
             thinking={"type": "adaptive"},
-            output_config={"effort": "medium"},
+            # Opus 4.7 best practice: minimum "high" for intelligence-sensitive
+            # work; "xhigh" for coding/agentic. We use "high" — sweet spot for
+            # cost-quality on tool-use Q&A.
+            output_config={"effort": "high"},
             messages=messages,
         )
 

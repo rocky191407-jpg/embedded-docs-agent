@@ -55,6 +55,19 @@ OVERLAP_TOKENS = 50
 CHUNK_CHARS = CHUNK_TOKENS * CHARS_PER_TOKEN
 OVERLAP_CHARS = OVERLAP_TOKENS * CHARS_PER_TOKEN
 
+# Module-level model cache. Loading SentenceTransformer per-call also
+# re-validates with the HuggingFace hub (httpx); after a few calls the
+# httpx client gets closed and subsequent loads fail with
+# "Cannot send a request, as the client has been closed". Load once.
+_MODEL_CACHE: SentenceTransformer | None = None
+
+
+def _get_model() -> SentenceTransformer:
+    global _MODEL_CACHE
+    if _MODEL_CACHE is None:
+        _MODEL_CACHE = SentenceTransformer(EMBED_MODEL_NAME)
+    return _MODEL_CACHE
+
 
 def iter_docs(root: Path) -> Iterator[tuple[Path, str]]:
     """Yield (path, text) for every supported file under root."""
@@ -146,7 +159,7 @@ def build_index(rebuild: bool = False) -> int:
         return 0
 
     rprint(f"[cyan]Loading embedding model: {EMBED_MODEL_NAME}[/] (first run downloads ~130MB)")
-    model = SentenceTransformer(EMBED_MODEL_NAME)
+    model = _get_model()
 
     coll = get_collection(rebuild=rebuild)
 
@@ -186,7 +199,7 @@ def query(text: str, k: int = 5) -> list[dict]:
         rprint("[red]Index is empty. Run with --rebuild first.[/]")
         return []
 
-    model = SentenceTransformer(EMBED_MODEL_NAME)
+    model = _get_model()
     vec = model.encode([text], normalize_embeddings=True).tolist()
     res = coll.query(query_embeddings=vec, n_results=k)
 

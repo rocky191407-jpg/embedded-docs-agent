@@ -1,8 +1,10 @@
 # Embedded Docs Agent
 
-A retrieval-augmented chat agent for embedded systems engineering. Ask "how do I implement priority-inheritance Mutex on Motorola 68000?" and get back a cited answer from RTOS course materials, ARM reference manuals, and FreeRTOS docs — with the agent autonomously deciding when to call additional tools (semantic search, ARM register lookup, assembler validation).
+A retrieval-augmented chat agent for embedded systems engineering. Ask "how do I implement priority-inheritance Mutex on Motorola 68000?" and get back a cited answer from RTOS course materials, ARM reference manuals, and FreeRTOS docs — with the agent autonomously deciding when to call additional tools (semantic search, ARM register lookup, assembler validation). Bilingual: ask in English or Chinese.
 
-Built on Claude Sonnet 4.6 with prompt caching, function calling, and Chroma vector search. Bridges low-level systems knowledge (RTOS / IoT / FPGA) with LLM tool-use and RAG.
+Built on **Claude Opus 4.7** with prompt caching, function calling, and Chroma vector search. Bridges low-level systems knowledge (RTOS / IoT / FPGA) with LLM tool-use and RAG.
+
+![demo](docs/demo.gif)
 
 > **Eval scores on the included question set (18 questions):**
 > - retrieval recall@5: **0.923**

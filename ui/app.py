@@ -38,7 +38,9 @@ EXAMPLES = [
     "What's the address and bit layout of SCB_VTOR? Why 128-byte alignment?",
     "What FPGA codec did my audio FIR project use, and at what I2C clock speed?",
     "How do I trigger software interrupt IRQ12 on Cortex-M4?",
-    "Compare my M2M Pi project's PID controller approach vs my RTOS scheduler.",
+    "我的 68000 RTOS 实现了优先级继承吗？如果没有，怎么补?",
+    "SCB_VTOR 寄存器的地址和位定义是什么？为什么需要 128 字节对齐?",
+    "解释我 M2M 项目里 PID 控制器和 RTOS 调度器的区别。",
 ]
 
 
@@ -109,7 +111,10 @@ def chat_fn(message: str, history: list, agent_history: list[MessageParam]):
         final_text = f"_(stopped: {resp.stop_reason})_"
         break
 
-    history = history + [(message, final_text)]
+    history = history + [
+        {"role": "user", "content": message},
+        {"role": "assistant", "content": final_text},
+    ]
     return "", history, agent_history, sources_md
 
 
@@ -126,6 +131,8 @@ def build_app() -> gr.Blocks:
                 chatbot = gr.Chatbot(
                     label="Conversation",
                     height=500,
+                    # Gradio 6 defaults to messages dict format; data is now
+                    # [{"role": "user|assistant", "content": "..."}, ...]
                 )
                 msg = gr.Textbox(
                     placeholder="Ask about RTOS, ARM Cortex-M, FPGA, NB-IoT...",
