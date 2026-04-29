@@ -1,0 +1,435 @@
+{
+  "metrics": {
+    "n_questions": 18,
+    "retrieval_recall@k": 0.9230769230769231,
+    "answer_keyword_hit": 0.9259259259259259,
+    "tool_use_match": 1.0,
+    "total_elapsed_s": 316.14200000005076,
+    "overall_score": 0.9396011396011397
+  },
+  "cases": [
+    {
+      "q": "Does my 68000 RTOS implement priority inheritance?",
+      "retrieved_sources": [
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "not implemented",
+        "mutex"
+      ],
+      "keyword_hits": [
+        false,
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 16.36
+    },
+    {
+      "q": "What are the syscall numbers in the 68000 RTOS?",
+      "retrieved_sources": [
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "SC_INITM",
+        "SC_WAITM",
+        "SC_SIGM"
+      ],
+      "keyword_hits": [
+        true,
+        true,
+        true
+      ],
+      "tools_called": [
+        "search_docs"
+      ],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 22.61
+    },
+    {
+      "q": "How big is the TCB in the 68000 RTOS and what fields does it have?",
+      "retrieved_sources": [
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "84"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 15.67
+    },
+    {
+      "q": "What's the address and reset value of SCB_VTOR?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": null,
+      "expected_kw": [
+        "0xE000ED08",
+        "0x00000000"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [
+        "lookup_register"
+      ],
+      "expected_tools": [
+        "lookup_register"
+      ],
+      "tool_hit": true,
+      "elapsed_s": 13.73
+    },
+    {
+      "q": "What does SCB_AIRCR.VECTKEY have to be set to in order to write to AIRCR?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": null,
+      "expected_kw": [
+        "0x05FA"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [
+        "lookup_register"
+      ],
+      "expected_tools": [
+        "lookup_register"
+      ],
+      "tool_hit": true,
+      "elapsed_s": 20.0
+    },
+    {
+      "q": "How do I clear the SysTick pending bit?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": null,
+      "expected_kw": [
+        "PENDSTCLR",
+        "ICSR"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [
+        "lookup_register"
+      ],
+      "expected_tools": [
+        "lookup_register"
+      ],
+      "tool_hit": true,
+      "elapsed_s": 20.11
+    },
+    {
+      "q": "What FPGA codec did my audio FIR project use?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "WM8731"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 10.56
+    },
+    {
+      "q": "How many taps was the FIR filter in my FPGA audio project?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "8"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 7.25
+    },
+    {
+      "q": "What I2C clock speed does my codec_init use?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "100"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 9.62
+    },
+    {
+      "q": "What kind of controller does my Raspberry Pi M2M project implement?",
+      "retrieved_sources": [
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "PID"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 11.27
+    },
+    {
+      "q": "What synchronization primitive does my M2M Raspberry Pi project use?",
+      "retrieved_sources": [
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "pthread",
+        "mutex"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 13.47
+    },
+    {
+      "q": "What protocol carries data between the two Raspberry Pis in my M2M project?",
+      "retrieved_sources": [
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "TCP"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 11.53
+    },
+    {
+      "q": "What is the topic of my MSc thesis proposal?",
+      "retrieved_sources": [
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\thesis-proposal-nbiot.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "NB-IoT"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 10.89
+    },
+    {
+      "q": "What does my thesis aim to achieve regarding battery life?",
+      "retrieved_sources": [
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "intermittent"
+      ],
+      "keyword_hits": [
+        false
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 16.11
+    },
+    {
+      "q": "What's the difference between MPU_RBAR and MPU_RNR?",
+      "retrieved_sources": [
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md"
+      ],
+      "retrieval_hit": null,
+      "expected_kw": [
+        "region",
+        "base address"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [
+        "lookup_register",
+        "lookup_register"
+      ],
+      "expected_tools": [
+        "lookup_register"
+      ],
+      "tool_hit": true,
+      "elapsed_s": 21.11
+    },
+    {
+      "q": "How would I trigger interrupt IRQ12 from software on a Cortex-M4?",
+      "retrieved_sources": [
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\m2m-pid-raspi.md"
+      ],
+      "retrieval_hit": null,
+      "expected_kw": [
+        "STIR",
+        "12"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [
+        "lookup_register",
+        "lookup_register",
+        "format_assembly"
+      ],
+      "expected_tools": [
+        "lookup_register"
+      ],
+      "tool_hit": true,
+      "elapsed_s": 32.78
+    },
+    {
+      "q": "My Round-Robin scheduler doesn't have priority levels. Is priority inversion still possible?",
+      "retrieved_sources": [
+        "docs\\newcastle\\rtos-68000-newcastle.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\rtos-68000-newcastle.md"
+      ],
+      "retrieval_hit": true,
+      "expected_kw": [
+        "round-robin"
+      ],
+      "keyword_hits": [
+        true
+      ],
+      "tools_called": [
+        "search_docs"
+      ],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 51.56
+    },
+    {
+      "q": "What university coursework do these projects come from?",
+      "retrieved_sources": [
+        "docs\\newcastle\\thesis-proposal-nbiot.md",
+        "docs\\newcastle\\m2m-pid-raspi.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\fpga-audio-codec-fir.md",
+        "docs\\newcastle\\m2m-pid-raspi.md"
+      ],
+      "retrieval_hit": false,
+      "expected_kw": [
+        "Newcastle",
+        "EEE808"
+      ],
+      "keyword_hits": [
+        true,
+        true
+      ],
+      "tools_called": [],
+      "expected_tools": [],
+      "tool_hit": null,
+      "elapsed_s": 11.5
+    }
+  ]
+}

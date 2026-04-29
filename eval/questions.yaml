@@ -1,0 +1,82 @@
+# Eval set: questions with expected retrieval sources and answer keywords.
+#
+# Each entry has:
+#   q:            the question
+#   expected_src: list of source filenames that SHOULD appear in top-K retrieval
+#                 (substring match — eg 'rtos-68000' matches the full path)
+#   expected_kw:  keywords that the final answer should contain (case-insensitive
+#                 substring); we don't grade prose quality, only factual coverage
+#   tools:        which tools we expect the agent to invoke (subset check; if
+#                 omitted, we don't enforce tool calls)
+
+- q: Does my 68000 RTOS implement priority inheritance?
+  expected_src: [rtos-68000-newcastle]
+  expected_kw: [not implemented, mutex]
+
+- q: What are the syscall numbers in the 68000 RTOS?
+  expected_src: [rtos-68000-newcastle]
+  expected_kw: [SC_INITM, SC_WAITM, SC_SIGM]
+
+- q: How big is the TCB in the 68000 RTOS and what fields does it have?
+  expected_src: [rtos-68000-newcastle]
+  expected_kw: ["84"]
+
+- q: What's the address and reset value of SCB_VTOR?
+  expected_kw: ["0xE000ED08", "0x00000000"]
+  tools: [lookup_register]
+
+- q: What does SCB_AIRCR.VECTKEY have to be set to in order to write to AIRCR?
+  expected_kw: ["0x05FA"]
+  tools: [lookup_register]
+
+- q: How do I clear the SysTick pending bit?
+  expected_kw: [PENDSTCLR, ICSR]
+  tools: [lookup_register]
+
+- q: What FPGA codec did my audio FIR project use?
+  expected_src: [fpga-audio-codec-fir]
+  expected_kw: [WM8731]
+
+- q: How many taps was the FIR filter in my FPGA audio project?
+  expected_src: [fpga-audio-codec-fir]
+  expected_kw: ["8"]
+
+- q: What I2C clock speed does my codec_init use?
+  expected_src: [fpga-audio-codec-fir]
+  expected_kw: ["100"]
+
+- q: What kind of controller does my Raspberry Pi M2M project implement?
+  expected_src: [m2m-pid-raspi]
+  expected_kw: [PID]
+
+- q: What synchronization primitive does my M2M Raspberry Pi project use?
+  expected_src: [m2m-pid-raspi]
+  expected_kw: [pthread, mutex]
+
+- q: What protocol carries data between the two Raspberry Pis in my M2M project?
+  expected_src: [m2m-pid-raspi]
+  expected_kw: [TCP]
+
+- q: What is the topic of my MSc thesis proposal?
+  expected_src: [thesis-proposal-nbiot]
+  expected_kw: [NB-IoT]
+
+- q: What does my thesis aim to achieve regarding battery life?
+  expected_src: [thesis-proposal-nbiot]
+  expected_kw: [intermittent]
+
+- q: What's the difference between MPU_RBAR and MPU_RNR?
+  expected_kw: [region, base address]
+  tools: [lookup_register]
+
+- q: How would I trigger interrupt IRQ12 from software on a Cortex-M4?
+  expected_kw: [STIR, "12"]
+  tools: [lookup_register]
+
+- q: My Round-Robin scheduler doesn't have priority levels. Is priority inversion still possible?
+  expected_src: [rtos-68000-newcastle]
+  expected_kw: [round-robin]
+
+- q: What university coursework do these projects come from?
+  expected_src: [rtos-68000-newcastle]
+  expected_kw: [Newcastle, EEE808]
